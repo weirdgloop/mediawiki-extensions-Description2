@@ -17,6 +17,9 @@ class SimpleDescriptionProvider implements DescriptionProvider {
 	 * @return string
 	 */
 	public function derive( string $text ): ?string {
+		// WGL - Ignore file info.
+		if ( str_contains( $text, '<span class="fileInfo">' ) ) return null;
+
 		$myText = $text;
 		$stripTags = [ 'style', 'table' ];
 		foreach ( $stripTags as $tag ) {
