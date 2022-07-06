@@ -111,6 +111,8 @@ class Hooks implements
 		}
 		if ( $description !== null ) {
 			$out->addMeta( 'description', $description );
+			// Open Graph protocol
+			$out->addMeta( 'og:description', $description );
 		}
 	}
 }
