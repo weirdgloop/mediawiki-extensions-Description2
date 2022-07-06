@@ -109,8 +109,9 @@ class Description2 {
 	 * @param ParserOutput $parserOutput The parser output to get the description from.
 	 */
 	public static function onOutputPageParserOutput( OutputPage &$out, ParserOutput $parserOutput ) {
-		// This hook can be called multiple times, so bail out if the meta description has already been added.
-		if ( !self::metaTagNotAlreadyAdded( $out, 'description' ) ) return;
+		// This hook can be called multiple times, so bail out if the meta description has already been added,
+		// except if this is not the article portion, such as on a File page.
+		if ( !$out->isArticle() || !self::metaTagNotAlreadyAdded( $out, 'description' ) ) return;
 
 		// Export the description from the main parser output into the OutputPage
 		if ( method_exists( $parserOutput, 'getPageProperty' ) ) {
