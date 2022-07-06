@@ -125,6 +125,7 @@ class Description2 {
 				'meta:description',
 				Html::element( 'meta', [
 					'name' => 'description',
+					'property' => 'og:description',
 					'content' => $description
 				] )
 			);
