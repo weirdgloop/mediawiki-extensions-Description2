@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\Description2;
 
+use Html;
 use MediaWiki\MediaWikiServices;
 use OutputPage;
 use Parser;
@@ -120,7 +121,13 @@ class Description2 {
 			}
 		}
 		if ( $description !== null ) {
-			$out->addMeta( 'description', $description );
+			$out->addHeadItem(
+				'meta:description',
+				Html::element( 'meta', [
+					'name' => 'description',
+					'content' => $description
+				] )
+			);
 		}
 	}
 }
