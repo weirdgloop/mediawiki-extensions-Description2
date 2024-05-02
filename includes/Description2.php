@@ -109,9 +109,6 @@ class Description2 {
 	 * @param ParserOutput $parserOutput The parser output to get the description from.
 	 */
 	public static function onOutputPageParserOutput( OutputPage &$out, ParserOutput $parserOutput ) {
-		// This hook can be called multiple times, so bail out if the meta description has already been added.
-		if ( !self::metaTagNotAlreadyAdded( $out, 'description' ) ) return;
-
 		// Export the description from the main parser output into the OutputPage
 		if ( method_exists( $parserOutput, 'getPageProperty' ) ) {
 			// MW 1.38+
@@ -127,21 +124,5 @@ class Description2 {
 			// Open Graph protocol
 			$out->addMeta( 'og:description', $description );
 		}
-	}
-
-	// WGL - From Fandom's OpenGraphMeta fork. (see https://github.com/Wikia/mediawiki-extensions-OpenGraphMeta/pull/7)
-	/**
-	 * Avoid duplicating Meta tags if another extension already adds them or if OutputPageParserOutput is run more
-	 * than once (as is the case for File pages).
-	 */
-	private static function metaTagNotAlreadyAdded( OutputPage $out, string $tagName ): bool {
-		return empty(
-			array_filter(
-				$out->getMetaTags(),
-				static function ( $tag ) use ( $tagName ) {
-					return $tag[0] == $tagName;
-				}
-			)
-		);
 	}
 }
