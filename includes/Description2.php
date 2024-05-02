@@ -121,8 +121,6 @@ class Description2 {
 		}
 		if ( $description !== null ) {
 			$out->addMeta( 'description', $description );
-			// Open Graph protocol
-			$out->addMeta( 'og:description', $description );
 		}
 	}
 }
