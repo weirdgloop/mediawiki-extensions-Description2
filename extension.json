@@ -13,6 +13,7 @@
 	},
 	"config": {
 		"EnableMetaDescriptionFunctions": false,
+		"DescriptionStripRegexes": [],
 		"DescriptionMaxChars": 300,
 		"DescriptionAlgorithm": "MediaWiki\\Extension\\Description2\\RemexDescriptionProvider",
 		"DescriptionRemoveElements": [
