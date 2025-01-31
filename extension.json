@@ -12,6 +12,7 @@
 		"MediaWiki": ">= 1.35.0"
 	},
 	"config": {
+		"DescriptionStripRegexes": [],
 		"EnableMetaDescriptionFunctions": false
 	},
 	"ConfigRegistry": {

@@ -27,6 +27,12 @@ class SimpleDescriptionProvider implements DescriptionProvider {
 			$myText = preg_replace( $pattern, '', $myText );
 		}
 
+		// WGL - Custom regexes to strip before description is extracted.
+		global $wgDescriptionStripRegexes;
+		foreach ( $wgDescriptionStripRegexes as $pattern ) {
+			$myText = preg_replace( $pattern, '', $myText );
+		}
+
 		$paragraphs = [];
 		if ( preg_match_all( '#<p>.*?</p>#is', $myText, $paragraphs ) ) {
 			foreach ( $paragraphs[0] as $paragraph ) {
